@@ -1,12 +1,8 @@
 package com.example.Dinothing.dto;
 
-import lombok.*;
+import lombok.Getter;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
-@ToString
-@Data
+@Getter
 public class UserDto {
     private String nickname;
     private String email;
