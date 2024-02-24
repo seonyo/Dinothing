@@ -26,12 +26,11 @@ public class UserController {
 
         //이메일 등록되어있는지 확인
         if(userRepository.existsByEmail(email)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Email is already registerd");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 가입된 이메일 입니다.");
         }
         //사용자 저장
         userRepository.save(UserEntity.builder().nickname(nickname).email(email).password(password).build());
         //성공 메세지
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registerd successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공했습니다.");
     }
 }
