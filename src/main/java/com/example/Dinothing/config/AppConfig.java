@@ -1,8 +1,7 @@
 package com.example.Dinothing.config;
 
 import com.example.Dinothing.repository.UserRepository;
-import com.example.Dinothing.service.User.UserService;
-import com.example.Dinothing.service.User.UserServiceImpl;
+import com.example.Dinothing.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +16,6 @@ public class AppConfig {
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(userRepository, passwordEncoder);
+        return new UserService(userRepository, passwordEncoder);
     }
 }
