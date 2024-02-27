@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -20,10 +23,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ResponseBody
     @PostMapping()
-    public ResponseEntity<UserEntity> registerUser(@RequestBody RegisterDto request) {
+    public ResponseEntity<Object> registerUser(@RequestBody RegisterDto request) {
         UserEntity users = userService.registerUser(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(users);
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("message", "회원가입에 성공했습니다.");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseData);
     }
 
     @PostMapping("/login")
