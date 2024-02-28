@@ -35,9 +35,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> registerUser(@RequestBody LoginDto request){
-        String email = request.getEmail();
-        String password = request.getPassword();
-        return null;
+    public ResponseEntity<Object> registerUser(@RequestBody LoginDto request){
+        long id = userService.loginUser(request);
+
+        Map<String, Long> responsedata = new HashMap<>();
+        responsedata.put("id", id);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responsedata);
     }
 }
