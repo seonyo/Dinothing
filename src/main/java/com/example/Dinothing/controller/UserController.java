@@ -25,22 +25,16 @@ public class UserController {
 
     @ResponseBody
     @PostMapping()
-    public ResponseEntity<Object> registerUser(@RequestBody RegisterDto request) {
+    public ResponseEntity<String> registerUser(@RequestBody RegisterDto request) {
         UserEntity users = userService.registerUser(request);
 
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("message", "회원가입에 성공했습니다.");
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseData);
+        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입에 성공했습니다");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> registerUser(@RequestBody LoginDto request){
+    public ResponseEntity<Long> registerUser(@RequestBody LoginDto request){
         long id = userService.loginUser(request);
 
-        Map<String, Long> responsedata = new HashMap<>();
-        responsedata.put("id", id);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responsedata);
+        return ResponseEntity.ok().body(id);
     }
 }
