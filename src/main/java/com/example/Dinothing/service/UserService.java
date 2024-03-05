@@ -8,12 +8,16 @@ import com.example.Dinothing.exception.EmailNotFoundException;
 import com.example.Dinothing.exception.PasswordNotFoundException;
 import com.example.Dinothing.exception.error.ErrorCode;
 import com.example.Dinothing.repository.UserRepository;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -45,7 +49,7 @@ public class UserService {
         }
     }
 
-    public long loginUser(LoginDto request){
+    public long loginUser(LoginDto request, HttpServletRequest httpRequest){
         String email = request.getEmail();
         String password = request.getPassword();
 
@@ -53,6 +57,11 @@ public class UserService {
         checkPassword(password);
 
         Optional<UserEntity> userEntityOptional = userRepository.findByEmail(email);
+        UserEntity userEntity = userEntityOptional.orElseThrow(() -> new RuntimeException("User not found"));
+
+        HttpSession session = httpRequest.getSession(true);
+        session.setAttribute("userId", userEntity.getId());
+
         return userEntityOptional.get().getId();
     }
 

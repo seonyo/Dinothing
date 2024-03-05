@@ -4,6 +4,7 @@ import com.example.Dinothing.dto.LoginDto;
 import com.example.Dinothing.dto.RegisterDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
+    private HttpServletRequest httpRequest;
+
+    @Autowired
     public UserController(UserService userService){
         this.userService = userService;
     }
@@ -27,14 +31,12 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<String> registerUser(@RequestBody RegisterDto request) {
         UserEntity users = userService.registerUser(request);
-
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입에 성공했습니다");
     }
 
     @PostMapping("/login")
     public ResponseEntity<Long> registerUser(@RequestBody LoginDto request){
-        long id = userService.loginUser(request);
-
+        long id = userService.loginUser(request, httpRequest);
         return ResponseEntity.ok().body(id);
     }
 }
