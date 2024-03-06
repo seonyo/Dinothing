@@ -1,6 +1,7 @@
 package com.example.Dinothing.service;
 
 import com.example.Dinothing.dto.LoginDto;
+import com.example.Dinothing.dto.PasswordUpdateDto;
 import com.example.Dinothing.dto.RegisterDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.exception.EmailDuplicateException;
@@ -54,10 +55,11 @@ public class UserService {
         String password = request.getPassword();
 
         checkEmail(email);
-        checkPassword(password);
 
         Optional<UserEntity> userEntityOptional = userRepository.findByEmail(email);
         UserEntity userEntity = userEntityOptional.orElseThrow(() -> new RuntimeException("User not found"));
+
+        checkPassword(password, userEntity.getPassword());
 
         HttpSession session = httpRequest.getSession(true);
         session.setAttribute("userId", userEntity.getId());
@@ -71,10 +73,11 @@ public class UserService {
         }
     }
 
-    public void checkPassword(String password){
-        if(!userRepository.existsByPassword(password)){
-            throw new PasswordNotFoundException("password not found", ErrorCode.PASSWORD_NOTFOUND);
+    private void checkPassword(String password, String hashedPassword){
+        if(!passwordEncoder.matches(password, hashedPassword)) {
+            throw new PasswordNotFoundException("Invalid password", ErrorCode.PASSWORD_NOTFOUND);
         }
     }
+
 
 }
