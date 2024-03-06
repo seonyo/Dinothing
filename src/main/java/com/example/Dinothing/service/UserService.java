@@ -79,5 +79,18 @@ public class UserService {
         }
     }
 
+    public UserEntity passwordUpdate(PasswordUpdateDto request){
+        String email = request.getEmail();
+        String password = request.getPassword();
+
+        checkEmail(email);
+
+        Optional<UserEntity> UserEntity = userRepository.findByEmail(email);
+
+        UserEntity user = UserEntity.get();
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setPassword(encodedPassword);
+        return userRepository.save(user);
+    }
 
 }

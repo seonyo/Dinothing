@@ -1,6 +1,7 @@
 package com.example.Dinothing.controller;
 
 import com.example.Dinothing.dto.LoginDto;
+import com.example.Dinothing.dto.PasswordUpdateDto;
 import com.example.Dinothing.dto.RegisterDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.service.UserService;
@@ -35,8 +36,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Long> registerUser(@RequestBody LoginDto request){
+    public ResponseEntity<Long> loginUser(@RequestBody LoginDto request){
         long id = userService.loginUser(request, httpRequest);
         return ResponseEntity.ok().body(id);
+    }
+
+    @PatchMapping("/password")
+    public ResponseEntity<String> passwrodUpdateUser(@RequestBody PasswordUpdateDto request){
+        UserEntity newPassword = userService.passwordUpdate(request);
+        return ResponseEntity.ok().body("비밀번호 변경에 성공했습니다");
     }
 }
