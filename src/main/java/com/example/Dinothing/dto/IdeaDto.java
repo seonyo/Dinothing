@@ -12,4 +12,5 @@ public class IdeaDto {
     private String q6;
     private String q7;
     private String color;
+    private long userId;
 }
