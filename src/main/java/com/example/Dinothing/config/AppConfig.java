@@ -24,6 +24,6 @@ public class AppConfig {
 
     @Bean
     public IdeaService ideaService(){
-        return new IdeaService(ideaRepository);
+        return new IdeaService(userRepository, ideaRepository);
     }
 }
