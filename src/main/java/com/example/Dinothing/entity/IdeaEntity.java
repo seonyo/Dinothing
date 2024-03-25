@@ -3,6 +3,8 @@ package com.example.Dinothing.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Optional;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,4 +46,5 @@ public class IdeaEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private UserEntity userId;
+
 }

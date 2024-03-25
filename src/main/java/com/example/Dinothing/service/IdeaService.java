@@ -8,7 +8,6 @@ import com.example.Dinothing.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.security.Provider;
 import java.util.Optional;
 
 public class IdeaService {
@@ -38,5 +37,10 @@ public class IdeaService {
         UserEntity userEntity = userEntityOptional.orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
         return ideaRepository.save(IdeaEntity.builder().q1(q1).q2(q2).q3(q3).q4(q4).q5(q5).q6(q6).q7(q7).color(color).userId(userEntity).build());
+    }
+
+    public Optional<IdeaEntity> getUserIdea(long id){
+        Optional<IdeaEntity> ideas = ideaRepository.findById(id);
+        return ideas;
     }
 }
