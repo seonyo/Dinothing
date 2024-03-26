@@ -1,7 +1,10 @@
 package com.example.Dinothing.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -13,7 +16,7 @@ public class UserEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @Column
     private String nickname;
@@ -23,4 +26,8 @@ public class UserEntity{
 
     @Column
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<IdeaEntity> ideaEntityList;
 }

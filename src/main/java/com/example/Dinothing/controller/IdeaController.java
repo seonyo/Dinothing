@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/ideas")
 public class IdeaController {
-    private IdeaService ideaService;
+    private IdeaService     ideaService;
     private IdeaRepository ideaRepository;
     @Autowired
     public IdeaController(IdeaService ideaService, IdeaRepository ideaRepository){
@@ -26,8 +27,8 @@ public class IdeaController {
         return ResponseEntity.ok().body("idea 등록 성공했습니다");
     }
     @GetMapping("/{id}")
-    public Optional<IdeaEntity> getUserIdea(@PathVariable("id") long id){
-        Optional<IdeaEntity> ideas = ideaService.getUserIdea(id);
+    public List<IdeaEntity> getUserIdea(@PathVariable("id") long id){
+        List<IdeaEntity> ideas = ideaService.getUserIdea(id);
         return ideas;
     }
 }

@@ -14,7 +14,7 @@ public class IdeaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @Column(columnDefinition = "TEXT")
     private String q1;
@@ -41,10 +41,10 @@ public class IdeaEntity {
     private String color;
 
     @Column
-    private int progress;
+    private Integer progress;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private UserEntity userId;
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
 }

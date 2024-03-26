@@ -12,6 +12,7 @@ import com.example.Dinothing.repository.UserRepository;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,17 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
-
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserEntity registerUser(RegisterDto request) {
         String nickname = request.getNickname();
@@ -41,7 +36,7 @@ public class UserService {
 
         duplicatedEmail(email);
 
-        return userRepository.save(UserEntity.builder().nickname(nickname).email(email).password(password).build());
+        return userRepository.save(request.toEntity(password));
     }
 
     public void duplicatedEmail(String email){

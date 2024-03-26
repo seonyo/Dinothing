@@ -2,45 +2,29 @@ package com.example.Dinothing.service;
 
 import com.example.Dinothing.dto.IdeaDto;
 import com.example.Dinothing.entity.IdeaEntity;
-import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.repository.IdeaRepository;
 import com.example.Dinothing.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
+@RequiredArgsConstructor
+@Service
 public class IdeaService {
-    private IdeaRepository ideaRepository;
-    private UserRepository userRepository;
-
-    @Autowired
-    public IdeaService(UserRepository userRepository, IdeaRepository ideaRepository){
-        this.userRepository = userRepository;
-        this.ideaRepository = ideaRepository;
-    }
+    private final IdeaRepository ideaRepository;
+    private final UserRepository userRepository;
 
     public IdeaEntity createIdea(IdeaDto request){
-        String q1 = request.getQ1();
-        String q2 = request.getQ2();
-        String q3 = request.getQ3();
-        String q4 = request.getQ4();
-        String q5 = request.getQ5();
-        String q6 = request.getQ6();
-        String q7 = request.getQ7();
-        String color = request.getColor();
-        long userId = request.getUserId();
+        Long userId = request.getUser().getId();
+        // existsBy : 존재하는지 안하는지 확인해주는거 존재하면 true, 아니면 false -> !를 붙였으니까 존재안하면 try catch 하는거
+        if(!userRepository.existsById(userId)) throw new EntityNotFoundException("User not found with id: " + userId);
 
-        Optional<UserEntity> userEntityOptional = userRepository.findById(userId);
-
-        // Optional에서 UserEntity를 가져옴
-        UserEntity userEntity = userEntityOptional.orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
-
-        return ideaRepository.save(IdeaEntity.builder().q1(q1).q2(q2).q3(q3).q4(q4).q5(q5).q6(q6).q7(q7).color(color).userId(userEntity).build());
+        return ideaRepository.save(request.toEntity());
     }
 
-    public Optional<IdeaEntity> getUserIdea(long id){
-        Optional<IdeaEntity> ideas = ideaRepository.findById(id);
-        return ideas;
+    public List<IdeaEntity> getUserIdea(long userId){
+        return ideaRepository.findByUserId(userId);
     }
 }
