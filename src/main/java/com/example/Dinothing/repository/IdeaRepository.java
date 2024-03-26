@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IdeaRepository extends JpaRepository<IdeaEntity, Long> {
-    List<IdeaEntity> findByUserId(Long UserId);
+    List<IdeaEntity> findAllByUserId(Long userId);
 }

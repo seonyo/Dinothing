@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +27,6 @@ public class IdeaService {
     }
 
     public List<IdeaEntity> getUserIdea(long userId){
-        return ideaRepository.findByUserId(userId);
+        return ideaRepository.findAllByUserId(userId);
     }
 }

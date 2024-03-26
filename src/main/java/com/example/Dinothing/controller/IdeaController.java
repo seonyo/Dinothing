@@ -28,7 +28,6 @@ public class IdeaController {
     }
     @GetMapping("/{id}")
     public List<IdeaEntity> getUserIdea(@PathVariable("id") long id){
-        List<IdeaEntity> ideas = ideaService.getUserIdea(id);
-        return ideas;
+        return ideaService.getUserIdea(id);
     }
 }
