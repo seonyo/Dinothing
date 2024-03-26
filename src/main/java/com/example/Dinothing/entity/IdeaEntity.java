@@ -3,8 +3,6 @@ package com.example.Dinothing.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Optional;
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
