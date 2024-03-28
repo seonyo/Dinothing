@@ -14,12 +14,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/ideas")
 public class IdeaController {
-    private IdeaService     ideaService;
-    private IdeaRepository ideaRepository;
+    private IdeaService ideaService;
     @Autowired
-    public IdeaController(IdeaService ideaService, IdeaRepository ideaRepository){
+    public IdeaController(IdeaService ideaService){
         this.ideaService = ideaService;
-        this.ideaRepository = ideaRepository;
     }
     @PostMapping()
     public ResponseEntity<String> createIdea(@RequestBody IdeaDto request){
@@ -27,7 +25,12 @@ public class IdeaController {
         return ResponseEntity.ok().body("idea 등록 성공했습니다");
     }
     @GetMapping("/{id}")
-    public List<IdeaEntity> getUserIdea(@PathVariable("id") long id){
+    public List<IdeaEntity> getUserIdea(@PathVariable("id") Long id){
         return ideaService.getUserIdea(id);
+    }
+
+    @GetMapping("/{user_id}/{idea_id}")
+    public List<IdeaEntity> getUserIdeaById (@PathVariable("user_id") Long user_id, @PathVariable("idea_id") Long idea_id){
+        return ideaService.getUserIdeaById(user_id, idea_id);
     }
 }

@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface IdeaRepository extends JpaRepository<IdeaEntity, Long> {
     List<IdeaEntity> findAllByUserId(Long userId);
+    List<IdeaEntity> findByUserIdAndId(Long userId, Long ideaId);
 }
