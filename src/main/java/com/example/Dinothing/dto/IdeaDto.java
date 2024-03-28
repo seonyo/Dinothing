@@ -35,6 +35,7 @@ public class IdeaDto {
                 .q6(q6)
                 .q7(q7)
                 .color(color)
+                .progress(1)
                 .user(userId)
                 .build();
     }
