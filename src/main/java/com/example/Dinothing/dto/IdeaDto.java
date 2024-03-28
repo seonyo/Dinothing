@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @NoArgsConstructor
-public class IdeaDto {
+public class  IdeaDto {
 
     private String q1;
     private String q2;
