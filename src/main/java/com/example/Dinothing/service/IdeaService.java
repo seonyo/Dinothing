@@ -30,7 +30,7 @@ public class IdeaService {
         return ideaRepository.findAllByUserId(userId);
     }
 
-    public List<IdeaEntity> getUserIdeaById(long userId, long ideaId) {
+    public IdeaEntity getUserIdeaById(long userId, long ideaId) {
         return ideaRepository.findByUserIdAndId(userId, ideaId);
     }
 }

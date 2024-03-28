@@ -30,7 +30,8 @@ public class IdeaController {
     }
 
     @GetMapping("/{user_id}/{idea_id}")
-    public List<IdeaEntity> getUserIdeaById (@PathVariable("user_id") Long user_id, @PathVariable("idea_id") Long idea_id){
+    public IdeaEntity getUserIdeaById (@PathVariable("user_id") Long user_id, @PathVariable("idea_id") Long idea_id){
         return ideaService.getUserIdeaById(user_id, idea_id);
     }
+
 }
