@@ -1,5 +1,6 @@
 package com.example.Dinothing.controller;
 
+import com.example.Dinothing.dto.DeleteIdeaDto;
 import com.example.Dinothing.dto.IdeaDto;
 import com.example.Dinothing.dto.IdeaUpdateDto;
 import com.example.Dinothing.entity.IdeaEntity;
@@ -39,5 +40,11 @@ public class IdeaController {
     public ResponseEntity<String> updateIdea (@RequestBody IdeaUpdateDto request){
         ideaService.updateIdea(request.getUserId(), request.getIdeaId(), request);
         return  ResponseEntity.ok().body("idea 수정 성공했습니다");
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteIdea (@RequestBody IdeaUpdateDto request){
+        ideaService.deleteIdea(request.getUserId(), request.getIdeaId());
+        return ResponseEntity.ok().body("idea 삭제 성공했습니다");
     }
 }

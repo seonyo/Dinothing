@@ -4,15 +4,21 @@ import com.example.Dinothing.dto.IdeaDto;
 import com.example.Dinothing.dto.IdeaUpdateDto;
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.entity.UserEntity;
+import com.example.Dinothing.exception.IdeaNotFoundException;
+import com.example.Dinothing.exception.PasswordNotFoundException;
+import com.example.Dinothing.exception.error.ErrorCode;
 import com.example.Dinothing.repository.IdeaRepository;
 import com.example.Dinothing.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Id;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class IdeaService {
@@ -49,4 +55,14 @@ public class IdeaService {
 
         return ideaRepository.save(idea);
     }
+
+    public void deleteIdea(Long userId, Long ideaId){
+        IdeaEntity idea = ideaRepository.findByUserIdAndId(userId, ideaId);
+        if (idea != null) {
+            ideaRepository.delete(idea);
+        } else {
+            throw new IdeaNotFoundException("Idea NotFound", ErrorCode.IDEA_NOTFOUND);
+        }
+    }
+
 }
