@@ -2,6 +2,7 @@ package com.example.Dinothing.exception.error;
 
 import com.example.Dinothing.exception.EmailDuplicateException;
 import com.example.Dinothing.exception.EmailNotFoundException;
+import com.example.Dinothing.exception.IdeaNotFoundException;
 import com.example.Dinothing.exception.PasswordNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PasswordNotFoundException.class)
     public ResponseEntity<ErrorResponse> PasswordNotFoundException(PasswordNotFoundException ex){
         log.error("PasswordNotFoundException",ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(IdeaNotFoundException.class)
+    public ResponseEntity<ErrorResponse> IdeaNotFoundException(IdeaNotFoundException ex){
+        log.error("IdeaNotFoundException", ex);
         ErrorResponse response = new ErrorResponse(ex.getErrorCode());
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
