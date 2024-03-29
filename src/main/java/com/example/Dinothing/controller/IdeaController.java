@@ -1,6 +1,7 @@
 package com.example.Dinothing.controller;
 
 import com.example.Dinothing.dto.IdeaDto;
+import com.example.Dinothing.dto.IdeaUpdateDto;
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.repository.IdeaRepository;
 import com.example.Dinothing.service.IdeaService;
@@ -19,7 +20,7 @@ public class IdeaController {
     public IdeaController(IdeaService ideaService){
         this.ideaService = ideaService;
     }
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<String> createIdea(@RequestBody IdeaDto request){
         IdeaEntity ideas = ideaService.createIdea(request);
         return ResponseEntity.ok().body("idea 등록 성공했습니다");
@@ -34,4 +35,9 @@ public class IdeaController {
         return ideaService.getUserIdeaById(user_id, idea_id);
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateIdea (@RequestBody IdeaUpdateDto request){
+        ideaService.updateIdea(request.getUserId(), request.getIdeaId(), request);
+        return  ResponseEntity.ok().body("idea 수정 성공했습니다");
+    }
 }

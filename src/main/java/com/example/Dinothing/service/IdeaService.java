@@ -1,6 +1,7 @@
 package com.example.Dinothing.service;
 
 import com.example.Dinothing.dto.IdeaDto;
+import com.example.Dinothing.dto.IdeaUpdateDto;
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.repository.IdeaRepository;
@@ -32,5 +33,20 @@ public class IdeaService {
 
     public IdeaEntity getUserIdeaById(long userId, long ideaId) {
         return ideaRepository.findByUserIdAndId(userId, ideaId);
+    }
+
+    public IdeaEntity updateIdea(Long userId, Long ideaId, IdeaUpdateDto request){
+        IdeaEntity idea = ideaRepository.findByUserIdAndId(userId, ideaId);
+
+        idea.setQ1(request.getQ1());
+        idea.setQ2(request.getQ2());
+        idea.setQ3(request.getQ3());
+        idea.setQ4(request.getQ4());
+        idea.setQ5(request.getQ5());
+        idea.setQ6(request.getQ6());
+        idea.setQ7(request.getQ7());
+        idea.setProgress(request.getProgress());
+
+        return ideaRepository.save(idea);
     }
 }
