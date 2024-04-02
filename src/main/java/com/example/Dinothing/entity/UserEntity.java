@@ -34,4 +34,8 @@ public class UserEntity{
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     private MemoEntity memoEntity;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<MemoEntity> memoEntityList;
 }
