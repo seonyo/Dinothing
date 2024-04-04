@@ -1,9 +1,6 @@
 package com.example.Dinothing.exception.error;
 
-import com.example.Dinothing.exception.EmailDuplicateException;
-import com.example.Dinothing.exception.EmailNotFoundException;
-import com.example.Dinothing.exception.IdeaNotFoundException;
-import com.example.Dinothing.exception.PasswordNotFoundException;
+import com.example.Dinothing.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,4 +45,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
 
+    @ExceptionHandler(HeartDuplicateException.class)
+    public ResponseEntity<ErrorResponse> HeartDuplicateException(HeartDuplicateException ex){
+        log.error("HeartDuplicateException", ex);
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
 }
