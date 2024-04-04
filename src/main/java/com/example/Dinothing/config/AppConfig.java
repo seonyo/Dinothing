@@ -1,5 +1,6 @@
 package com.example.Dinothing.config;
 
+import com.example.Dinothing.repository.HeartRepository;
 import com.example.Dinothing.repository.IdeaRepository;
 import com.example.Dinothing.repository.MemoRepository;
 import com.example.Dinothing.repository.UserRepository;
@@ -19,6 +20,7 @@ public class AppConfig {
     private final UserRepository userRepository;
     private final IdeaRepository ideaRepository;
     private final MemoRepository memoRepository;
+    private final HeartRepository heartRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Bean
@@ -33,4 +35,9 @@ public class AppConfig {
 
     @Bean
     public MemoService memoService(){return new MemoService(memoRepository);}
+
+    @Bean
+    public HeartService heartService(){
+        return new HeartService(heartRepository);
+    }
 }
