@@ -1,5 +1,6 @@
 package com.example.Dinothing.service;
 
+import com.example.Dinothing.dto.DeleteHeartDto;
 import com.example.Dinothing.dto.HeartDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.exception.HeartDuplicateException;
@@ -30,6 +31,19 @@ public class HeartService {
         }
 
         return heartRepository.save(request.toEntity());
+    }
+
+    public void deleteHeart(DeleteHeartDto request){
+        Long ideaId = request.getIdeaId();
+        Long userId = request.getUserId();
+
+        Optional<HeartEntity> optionalHeart = heartRepository.findByUserIdAndIdeaId(userId, ideaId);
+
+        if(!optionalHeart.isPresent()) {
+            throw new HeartDuplicateException("Heart NotFound", ErrorCode.HEART_NOTFOUND);
+        }
+
+        heartRepository.deleteByUserIdAndIdeaId(userId, ideaId);
     }
 
 }
