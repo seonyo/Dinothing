@@ -4,14 +4,13 @@ import com.example.Dinothing.dto.DeleteHeartDto;
 import com.example.Dinothing.dto.HeartDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.exception.HeartDuplicateException;
-import com.example.Dinothing.exception.IdeaNotFoundException;
 import com.example.Dinothing.exception.error.ErrorCode;
 import com.example.Dinothing.repository.HeartRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -44,6 +43,10 @@ public class HeartService {
         }
 
         heartRepository.deleteByUserIdAndIdeaId(userId, ideaId);
+    }
+
+    public List<HeartEntity> getUserHeartById(Long userId){
+        return heartRepository.findAllByUserId(userId);
     }
 
 }
