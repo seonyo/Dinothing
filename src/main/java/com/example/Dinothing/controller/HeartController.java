@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/hearts")
 public class HeartController {
@@ -27,5 +29,10 @@ public class HeartController {
     ResponseEntity<String> deleteHeart(@RequestBody DeleteHeartDto request){
         heartService.deleteHeart(request);
         return ResponseEntity.ok().body("heart 삭제 성공했습니다");
+    }
+
+    @GetMapping("/{user_id}")
+    public List<HeartEntity> getHeartById (@PathVariable("user_id") Long userId){
+        return heartService.getUserHeartById(userId);
     }
 }
