@@ -16,12 +16,10 @@ public class HeartEntity {
     @Column(nullable = false)
     private Long id;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idea_id")
     private IdeaEntity idea;

@@ -24,6 +24,7 @@ public class UserEntity{
     @Column(unique = true)
     private String email;
 
+    @JsonIgnore
     @Column
     private String password;
 

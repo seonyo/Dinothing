@@ -44,7 +44,6 @@ public class IdeaEntity {
     @Column
     private Integer progress;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
