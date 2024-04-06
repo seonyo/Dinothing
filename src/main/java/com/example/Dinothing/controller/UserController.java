@@ -1,9 +1,9 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.Request.LoginRequestDto;
-import com.example.Dinothing.dto.Request.PasswordUpdateRequestDto;
-import com.example.Dinothing.dto.Request.RegisterRequestDto;
-import com.example.Dinothing.dto.Response.UserIdResponseDto;
+import com.example.Dinothing.dto.user.LoginRequestDto;
+import com.example.Dinothing.dto.user.PasswordUpdateRequestDto;
+import com.example.Dinothing.dto.user.RegisterRequestDto;
+import com.example.Dinothing.dto.user.UserIdResponseDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;

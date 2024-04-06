@@ -1,7 +1,7 @@
 package com.example.Dinothing.service;
 
-import com.example.Dinothing.dto.Request.IdeaRequestDto;
-import com.example.Dinothing.dto.Request.IdeaUpdateRequestDto;
+import com.example.Dinothing.dto.idea.IdeaRequestDto;
+import com.example.Dinothing.dto.idea.IdeaUpdateRequestDto;
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.exception.IdeaNotFoundException;
 import com.example.Dinothing.exception.error.ErrorCode;

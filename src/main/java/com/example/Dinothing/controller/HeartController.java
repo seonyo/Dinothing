@@ -1,7 +1,7 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.Request.DeleteHeartRequestDto;
-import com.example.Dinothing.dto.Request.HeartRequestDto;
+import com.example.Dinothing.dto.heart.DeleteHeartRequestDto;
+import com.example.Dinothing.dto.heart.HeartRequestDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.service.HeartService;
 import org.springframework.beans.factory.annotation.Autowired;

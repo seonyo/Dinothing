@@ -1,7 +1,7 @@
 package com.example.Dinothing.service;
 
-import com.example.Dinothing.dto.Request.DeleteHeartRequestDto;
-import com.example.Dinothing.dto.Request.HeartRequestDto;
+import com.example.Dinothing.dto.heart.DeleteHeartRequestDto;
+import com.example.Dinothing.dto.heart.HeartRequestDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.exception.HeartDuplicateException;
 import com.example.Dinothing.exception.error.ErrorCode;

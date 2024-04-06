@@ -1,7 +1,7 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.Request.IdeaRequestDto;
-import com.example.Dinothing.dto.Request.IdeaUpdateRequestDto;
+import com.example.Dinothing.dto.idea.IdeaRequestDto;
+import com.example.Dinothing.dto.idea.IdeaUpdateRequestDto;
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.service.IdeaService;
 import org.springframework.beans.factory.annotation.Autowired;
