@@ -1,6 +1,6 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.MemoRequestDto;
+import com.example.Dinothing.dto.Request.MemoRequestDto;
 import com.example.Dinothing.entity.MemoEntity;
 import com.example.Dinothing.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.example.Dinothing.service;
 
-import com.example.Dinothing.dto.LoginRequestDto;
-import com.example.Dinothing.dto.PasswordUpdateRequestDto;
-import com.example.Dinothing.dto.RegisterRequestDto;
+import com.example.Dinothing.dto.Request.LoginRequestDto;
+import com.example.Dinothing.dto.Request.PasswordUpdateRequestDto;
+import com.example.Dinothing.dto.Request.RegisterRequestDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.exception.EmailDuplicateException;
 import com.example.Dinothing.exception.EmailNotFoundException;
