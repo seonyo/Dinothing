@@ -1,17 +1,14 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.DeleteIdeaDto;
-import com.example.Dinothing.dto.IdeaDto;
-import com.example.Dinothing.dto.IdeaUpdateDto;
+import com.example.Dinothing.dto.IdeaRequestDto;
+import com.example.Dinothing.dto.IdeaUpdateRequestDto;
 import com.example.Dinothing.entity.IdeaEntity;
-import com.example.Dinothing.repository.IdeaRepository;
 import com.example.Dinothing.service.IdeaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/ideas")
@@ -22,7 +19,7 @@ public class IdeaController {
         this.ideaService = ideaService;
     }
     @PostMapping
-    public ResponseEntity<String> createIdea(@RequestBody IdeaDto request){
+    public ResponseEntity<String> createIdea(@RequestBody IdeaRequestDto request){
         IdeaEntity ideas = ideaService.createIdea(request);
         return ResponseEntity.ok().body("idea 등록 성공했습니다");
     }
@@ -37,13 +34,13 @@ public class IdeaController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateIdea (@RequestBody IdeaUpdateDto request){
+    public ResponseEntity<String> updateIdea (@RequestBody IdeaUpdateRequestDto request){
         ideaService.updateIdea(request.getUserId(), request.getIdeaId(), request);
         return  ResponseEntity.ok().body("idea 수정 성공했습니다");
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteIdea (@RequestBody IdeaUpdateDto request){
+    public ResponseEntity<String> deleteIdea (@RequestBody IdeaUpdateRequestDto request){
         ideaService.deleteIdea(request.getUserId(), request.getIdeaId());
         return ResponseEntity.ok().body("idea 삭제 성공했습니다");
     }

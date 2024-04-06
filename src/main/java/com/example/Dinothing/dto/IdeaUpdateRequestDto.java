@@ -1,13 +1,12 @@
 package com.example.Dinothing.dto;
 
 import com.example.Dinothing.entity.IdeaEntity;
-import com.example.Dinothing.entity.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class IdeaUpdateDto {
+public class IdeaUpdateRequestDto {
     private String q1;
     private String q2;
     private String q3;

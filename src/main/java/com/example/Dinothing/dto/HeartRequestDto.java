@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class HeartDto {
+public class HeartRequestDto {
     private IdeaEntity ideaId;
     private UserEntity userId;
 

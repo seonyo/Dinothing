@@ -2,17 +2,12 @@ package com.example.Dinothing.dto;
 
 import com.example.Dinothing.entity.IdeaEntity;
 import com.example.Dinothing.entity.UserEntity;
-import com.example.Dinothing.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @NoArgsConstructor
-public class  IdeaDto {
+public class IdeaRequestDto {
 
     private String q1;
     private String q2;

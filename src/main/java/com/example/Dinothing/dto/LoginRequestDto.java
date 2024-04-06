@@ -3,7 +3,7 @@ package com.example.Dinothing.dto;
 import lombok.Getter;
 
 @Getter
-public class LoginDto {
+public class LoginRequestDto {
     private String email;
     private String password;
 }

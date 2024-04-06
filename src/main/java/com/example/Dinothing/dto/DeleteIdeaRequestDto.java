@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class DeleteIdeaDto {
+public class DeleteIdeaRequestDto {
     private Long userId;
     private Long ideaId;
 }

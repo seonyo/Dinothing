@@ -4,7 +4,7 @@ import com.example.Dinothing.entity.UserEntity;
 import lombok.Getter;
 
 @Getter
-public class RegisterDto {
+public class RegisterRequestDto {
     private String nickname;
     private String email;
     private String password;

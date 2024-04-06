@@ -1,6 +1,6 @@
 package com.example.Dinothing.service;
 
-import com.example.Dinothing.dto.MemoDto;
+import com.example.Dinothing.dto.MemoRequestDto;
 import com.example.Dinothing.entity.MemoEntity;
 import com.example.Dinothing.repository.MemoRepository;
 import jakarta.transaction.Transactional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class MemoService {
     private final MemoRepository memoRepository;
-    public MemoEntity createOrUpdateMemo(MemoDto request){
+    public MemoEntity createOrUpdateMemo(MemoRequestDto request){
         Optional<MemoEntity> optionalMemo = memoRepository.findById(request.getUserId().getId());
 
         MemoEntity memo = optionalMemo.orElseGet(MemoEntity::new);

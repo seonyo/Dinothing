@@ -1,7 +1,7 @@
 package com.example.Dinothing.service;
 
-import com.example.Dinothing.dto.DeleteHeartDto;
-import com.example.Dinothing.dto.HeartDto;
+import com.example.Dinothing.dto.DeleteHeartRequestDto;
+import com.example.Dinothing.dto.HeartRequestDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.exception.HeartDuplicateException;
 import com.example.Dinothing.exception.error.ErrorCode;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class HeartService {
     private final HeartRepository heartRepository;
 
-    public HeartEntity createHeart(HeartDto request){
+    public HeartEntity createHeart(HeartRequestDto request){
         Long ideaId = request.getIdeaId().getId();
         Long userId = request.getUserId().getId();
 
@@ -32,7 +32,7 @@ public class HeartService {
         return heartRepository.save(request.toEntity());
     }
 
-    public void deleteHeart(DeleteHeartDto request){
+    public void deleteHeart(DeleteHeartRequestDto request){
         Long ideaId = request.getIdeaId();
         Long userId = request.getUserId();
 

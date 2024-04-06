@@ -1,6 +1,6 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.MemoDto;
+import com.example.Dinothing.dto.MemoRequestDto;
 import com.example.Dinothing.entity.MemoEntity;
 import com.example.Dinothing.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class MemoController {
         this.memoService = memoService;
     }
     @PostMapping
-    public ResponseEntity<String> createMemo(@RequestBody MemoDto request){
+    public ResponseEntity<String> createMemo(@RequestBody MemoRequestDto request){
         MemoEntity memos = memoService.createOrUpdateMemo(request);
         return ResponseEntity.ok().body("memo 변경 성공했습니다");
     }

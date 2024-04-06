@@ -1,7 +1,7 @@
 package com.example.Dinothing.controller;
 
-import com.example.Dinothing.dto.DeleteHeartDto;
-import com.example.Dinothing.dto.HeartDto;
+import com.example.Dinothing.dto.DeleteHeartRequestDto;
+import com.example.Dinothing.dto.HeartRequestDto;
 import com.example.Dinothing.entity.HeartEntity;
 import com.example.Dinothing.service.HeartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ public class HeartController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createHeart(@RequestBody HeartDto request){
+    public ResponseEntity<String> createHeart(@RequestBody HeartRequestDto request){
         HeartEntity hearts = heartService.createHeart(request);
         return ResponseEntity.ok().body("heart 등록 성공했습니다");
     }
 
     @DeleteMapping
-    ResponseEntity<String> deleteHeart(@RequestBody DeleteHeartDto request){
+    ResponseEntity<String> deleteHeart(@RequestBody DeleteHeartRequestDto request){
         heartService.deleteHeart(request);
         return ResponseEntity.ok().body("heart 삭제 성공했습니다");
     }
