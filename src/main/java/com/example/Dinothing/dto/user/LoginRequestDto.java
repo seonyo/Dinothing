@@ -1,4 +1,4 @@
-package com.example.Dinothing.dto.Request;
+package com.example.Dinothing.dto.user;
 
 import lombok.Getter;
 

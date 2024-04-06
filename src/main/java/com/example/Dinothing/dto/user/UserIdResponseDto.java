@@ -1,4 +1,4 @@
-package com.example.Dinothing.dto.Response;
+package com.example.Dinothing.dto.user;
 
 import lombok.*;
 

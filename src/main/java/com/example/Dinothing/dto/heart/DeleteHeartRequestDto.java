@@ -1,11 +1,12 @@
-package com.example.Dinothing.dto.Request;
+package com.example.Dinothing.dto.heart;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class DeleteIdeaRequestDto {
-    private Long userId;
+public class DeleteHeartRequestDto {
     private Long ideaId;
+    private Long userId;
+
 }

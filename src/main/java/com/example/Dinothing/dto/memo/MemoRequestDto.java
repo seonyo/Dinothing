@@ -1,4 +1,4 @@
-package com.example.Dinothing.dto.Request;
+package com.example.Dinothing.dto.memo;
 
 import com.example.Dinothing.entity.MemoEntity;
 import com.example.Dinothing.entity.UserEntity;
