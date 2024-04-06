@@ -3,6 +3,7 @@ package com.example.Dinothing.controller;
 import com.example.Dinothing.dto.Request.LoginRequestDto;
 import com.example.Dinothing.dto.Request.PasswordUpdateRequestDto;
 import com.example.Dinothing.dto.Request.RegisterRequestDto;
+import com.example.Dinothing.dto.Response.UserIdResponseDto;
 import com.example.Dinothing.entity.UserEntity;
 import com.example.Dinothing.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,9 +34,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Long> loginUser(@RequestBody LoginRequestDto request){
-        long id = userService.loginUser(request, httpRequest);
-        return ResponseEntity.ok().body(id);
+    public ResponseEntity<UserIdResponseDto> loginUser(@RequestBody LoginRequestDto request){
+        Long id = userService.loginUser(request, httpRequest);
+        return ResponseEntity.ok().body(new UserIdResponseDto(id));
     }
 
     @PatchMapping("/password")
